@@ -3,35 +3,15 @@
 	<head>
 		<meta charset="utf-8">
 		<title>Flashcard</title>
-		<link rel="stylesheet" href="/dist/styles.a8cecbbd.css">
+		<link rel="stylesheet" href="/dist/styles.2789afe7.css">
 		<script src="https://code.angularjs.org/1.6.2/angular.min.js"></script>
 		<script src="https://code.angularjs.org/1.6.2/angular-route.min.js"></script>
 	</head>
 	<body>
-		<h1>Flashcards</h1>
-		
-		<strong class="splash-title">Flashcards</strong>
-
-		<a href="#" class="btn">Start</a>
-		<a href="#" class="btn -large">Start</a>
-		<a href="#" class="btn -red">Delete</a>
-		<a href="#" class="btn -red -large">Delete</a>
-
-		
-
-		<div class="name-set">
-			<input type="text" class="underline" id="set-name" value="Ex. Data structures and algorithms">
-			<label for="set-name">Card Set Name</label>
-		</div>
-
-		<div class="card">
-			<p class="card-content">Just a happy little shadow that lives in there. Life is too short to be alone, too precious. Share it with a friend. This is gonna be a happy little seascape. Tree trunks grow however makes them happy. </p>
-		</div>
-
-		<div class="card -editable">
-			<textarea>Editable text</textarea>
-		</div>
-
-  	<script src="/dist/js/bundle.c6777363.js"></script>
+	<nav class="nav">
+		<a href="#/"><h1>Flashcards</h1></a>
+	</nav>
+		<div ng-view></div>
+  	<script src="/dist/js/bundle.b80ac822.js"></script>
 	</body>
 </html>

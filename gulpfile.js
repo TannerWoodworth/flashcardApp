@@ -21,7 +21,9 @@ var cachebust = new CacheBuster();
 
 gulp.task('clean', function (cb) {
     del([
-        'dist'
+        'dist/js',
+        'dist/maps',
+        'dist/*.css'
     ], cb);
 });
 
@@ -44,23 +46,6 @@ gulp.task('build-css', ['clean'], function() {
         .pipe(cachebust.resources())
         .pipe(sourcemaps.write('./maps'))
         .pipe(gulp.dest('./dist'));
-});
-
-// fills in the Angular template cache, to prevent loading the html templates via
-// separate http requests
-
-gulp.task('build-template-cache', ['clean'], function() {
-    
-    var ngHtml2Js = require("gulp-ng-html2js"),
-        concat = require("gulp-concat");
-    
-    return gulp.src("./partials/*.html")
-        .pipe(ngHtml2Js({
-            moduleName: "todoPartials",
-            prefix: "/partials/"
-        }))
-        .pipe(concat("templateCachePartials.js"))
-        .pipe(gulp.dest("./dist"));
 });
 
 // runs jshint
@@ -112,7 +97,7 @@ gulp.task('build-js', ['clean'], function() {
 
 // full build (except sprites), applies cache busting to the main page css and js bundles
 
-gulp.task('build', [ 'clean', 'bower','build-css','build-template-cache', 'jshint', 'build-js'], function() {
+gulp.task('build', [ 'clean', 'bower','build-css', 'jshint', 'build-js', 'move-partials'], function() {
     return gulp.src('index.html')
         .pipe(cachebust.references())
         .pipe(gulp.dest('dist'));
@@ -156,6 +141,14 @@ gulp.task('sprite', function () {
     spriteData.img.pipe(gulp.dest('./dist'))
 });
 
+// Move partials / templates folder
+
+gulp.task('move-partials', [], function() {
+  console.log("Moving 'partials' folder");
+    return gulp.src("partials/*.html")
+    .pipe(gulp.dest('dist/partials/'));
+});
+
 // installs and builds everything, including sprites
 
-gulp.task('default', ['sprite','build', 'test']);
+gulp.task('default', ['sprite','build', 'test', 'move-partials']);
