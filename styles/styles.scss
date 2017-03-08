@@ -1,0 +1,12 @@
+@import 'reset';
+@import 'vars';
+@import 'type';
+@import 'elements';
+@import 'components';
+
+html {
+	background-color: $color-green;
+	color: $color-white;
+	font-family: $font-stack;
+	font-size: $font-size;
+}

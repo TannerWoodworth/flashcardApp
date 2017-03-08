@@ -1,0 +1,109 @@
+// BUTTONS
+.btn {
+	background-color: $color-light-green;
+	color: $color-white;
+	text-decoration: none;
+	text-align: center;
+	font-size: $font-size-large;
+	
+	padding: $base-size-small;
+	display: inline-block;
+	box-shadow: 5px 5px $color-dark-green;
+	border-radius: $br;
+	transition: background-color 200ms;
+	
+	&:hover {
+		background-color: darken( $color-light-green, 7% );
+		transition: background-color 200ms;
+	}
+	
+	// MODIFIERS
+	&.-small {
+
+	}
+
+	&.-large {
+		min-width: 150px;
+	}
+
+	&.-red {
+		background-color: $color-light-red;
+		box-shadow: 5px 5px $color-dark-red;
+
+		&:hover {
+			background-color: darken( $color-light-red, 7% );
+		}
+	}
+}
+
+// UNIQUE
+
+.splash-title {
+	font-size: 144px;
+	font-weight: bold;
+	text-align: center;
+	display: block;
+}
+
+// TEXT INPUT
+
+.name-set {
+	display: block;
+	margin: 0 auto;
+	width: 800px;
+	padding: 50px;
+
+	input[type="text"] {
+		display: block;
+		width: 100%;
+		padding: $base-size-small-x $base-size-small-x $base-size-small $base-size-small-x;
+	 	border: none;
+		border-bottom: solid 3px $color-dark-green;
+		text-align: center;
+		background-color: transparent;
+		color: $color-white;
+		font-size: $font-size-large;
+		font-family: $font-stack;
+	}
+
+	label {
+		display: block;
+		text-align: center;
+		padding-top: $base-size-small;
+	}
+}
+
+// CARD
+
+.card {
+	height: 300px;
+	width: 500px;
+	background-color: $color-white;
+	margin: $base-size-small;
+	color: $color-black;
+	text-align: center;
+	position: relative;
+
+	>.card-content {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translateX(-50%) translateY(-50%);
+		width:100%;
+		padding: $base-size-small;
+	}
+
+	> textarea {
+		height: 280px;
+		width: 480px;
+		resize: none;
+		padding: 10px;
+		text-align: center;
+		vertical-align: middle;
+		color: $color-black;
+		font-size: $font-size;
+		font-family: $font-stack;
+		border: none;
+	}
+
+}
