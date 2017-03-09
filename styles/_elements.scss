@@ -5,11 +5,15 @@
 	text-decoration: none;
 	text-align: center;
 	font-size: $font-size-large;
+	font-family: $font-stack;
+	font: $font-size-large $font-stack;
 	padding: $base-size-small;
 	display: inline-block;
 	box-shadow: 5px 5px $color-dark-green;
 	border-radius: $br;
+	border: none;
 	transition: background-color 200ms;
+	cursor: pointer;
 	
 	&:hover {
 		background-color: darken( $color-light-green, 7% );
@@ -83,6 +87,7 @@
 	color: $color-black;
 	text-align: center;
 	position: relative;
+	overflow: hidden;
 
 	>.card-content {
 		position: absolute;

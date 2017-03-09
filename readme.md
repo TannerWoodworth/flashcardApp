@@ -8,6 +8,7 @@ TODO:
 - Make Responsive
 - Fix some spacing / proportion issues
 - Add basically all functionality
+- Limit input to 350 chars on each card side
 - Add ability to import / export cards using a JSON object
 
 

@@ -97,7 +97,7 @@ gulp.task('build-js', ['clean'], function() {
 
 // full build (except sprites), applies cache busting to the main page css and js bundles
 
-gulp.task('build', [ 'clean', 'bower','build-css', 'jshint', 'build-js', 'move-partials'], function() {
+gulp.task('build', [ 'clean', 'bower','build-css', 'jshint', 'build-js', 'move-partials', 'move-directives'], function() {
     return gulp.src('index.html')
         .pipe(cachebust.references())
         .pipe(gulp.dest('dist'));
@@ -106,7 +106,7 @@ gulp.task('build', [ 'clean', 'bower','build-css', 'jshint', 'build-js', 'move-p
 // watches file system and triggers a build when a modification is detected
 
 gulp.task('watch', function() {
-    return gulp.watch(['./index.html','./partials/*.html', './styles/*.*css', './js/**/*.js'], ['build']);
+    return gulp.watch(['./index.html','./partials/*.html','./directives/*.html', './styles/*.*css', './js/**/*.js'], ['build']);
 });
 
 // launches a web server that serves files in the current directory
@@ -149,6 +149,12 @@ gulp.task('move-partials', [], function() {
     .pipe(gulp.dest('dist/partials/'));
 });
 
+gulp.task('move-directives', [], function() {
+  console.log("Moving 'directives' folder");
+    return gulp.src("directives/*.html")
+    .pipe(gulp.dest('dist/directives/'));
+});
+
 // installs and builds everything, including sprites
 
-gulp.task('default', ['sprite','build', 'test', 'move-partials']);
+gulp.task('default', ['sprite','build', 'test', 'move-partials', 'move-directives']);

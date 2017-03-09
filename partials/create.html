@@ -2,41 +2,21 @@
 	<div class="current-cards">
 		<div class="card-well">
 			<div class="card">
-				<textarea>Editable text</textarea>
+				<textarea ng-model="currentFront">Editable text</textarea>
 			</div>
 
 			<div class="card">
-				<textarea>Editable text</textarea>
+				<textarea ng-model="currentBack">Editable text</textarea>
 			</div>
 		</div>
 	</div>
 
 	<div class="action-btns">
-		<a href="#" class="btn -large">New Card</a>
+		<button class="btn -large" ng-click="addNewCard()">New Card</button>
 		<a href="#/save" class="btn -large">Finish</a>
 	</div>
 
 	
-	<div class="finished-cards">
-		<div class="card-well">
-			<div class="card">
-				<p class="card-content">Front</p>
-			</div>
-
-			<div class="card">
-				<p class="card-content">Just a happy little shadow that lives in there. Life is too short to be alone, too precious. Share it with a friend. This is gonna be a happy little seascape. Tree trunks grow however makes them happy. </p>
-			</div>
-		</div>
-
-		<div class="card-well">
-			<div class="card">
-				<p class="card-content">Front</p>
-			</div>
-
-			<div class="card">
-				<p class="card-content">Just a happy little shadow that lives in there. Life is too short to be alone, too precious. Share it with a friend. This is gonna be a happy little seascape. Tree trunks grow however makes them happy. </p>
-			</div>
-		</div>
-	</div>
-
+	<finished-card class="finished-cards" card-object="card" ng-repeat="card in savedCards">
+	</finished-card>
 </div>
