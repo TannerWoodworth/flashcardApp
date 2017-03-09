@@ -1,0 +1,29 @@
+// ALIGNMENT
+.center {
+	position: absolute;
+
+	&.-all {
+		top: 50%;
+		left: 50%;
+		transform: translateX(-50%) translateY(-50%);
+	}
+
+	&.-v {
+		top: 50%;
+		transform: translateY(-50%);
+	}
+
+	&.-h {
+		left: 50%;
+		transform: translateX(-50%);
+	}
+}
+
+.container {
+	position: relative;
+	margin-left: auto;
+	margin-right: auto;
+	padding-left: $base-size;
+	padding-right: $base-size;
+	width: 1140px;
+}

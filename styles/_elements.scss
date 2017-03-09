@@ -5,7 +5,6 @@
 	text-decoration: none;
 	text-align: center;
 	font-size: $font-size-large;
-	
 	padding: $base-size-small;
 	display: inline-block;
 	box-shadow: 5px 5px $color-dark-green;
@@ -23,7 +22,7 @@
 	}
 
 	&.-large {
-		min-width: 150px;
+		min-width: 175px;
 	}
 
 	&.-red {
@@ -76,10 +75,11 @@
 // CARD
 
 .card {
+	display: inline-block;
 	height: 300px;
 	width: 500px;
 	background-color: $color-white;
-	margin: $base-size-small;
+	// margin: $base-size-small;
 	color: $color-black;
 	text-align: center;
 	position: relative;

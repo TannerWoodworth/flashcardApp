@@ -1,8 +1,65 @@
 // Navigation
 
 .nav {
+	padding: $base-size $base-size;
 	a {
 		color: $color-white;
 		text-decoration: none;
 	}
+}
+
+// BUTTONS
+.action-btns {
+	margin: $base-size auto;
+	text-align: center;
+
+	.btn {
+		margin-right: 24px;
+
+		&:last-child {
+			margin-right: 0px;
+		}
+	}
+}
+
+// UNIQUE / SPECIFIC
+.splash-content{
+	position: absolute;
+	top: 30%;
+	left: 50%;
+	transform: translateX(-50%) translateY(-50%);
+}
+
+
+.card-well {
+	display: inline-block;
+	position: relative;
+	left: 50%;
+	transform: translateX(-50%);
+	margin-top: $base-size-small;
+	margin-bottom: $base-size-small;
+
+	.card {
+		&:first-child {
+			margin-right: $base-size-small;
+		}
+
+		&:last-child {
+			margin-left: $base-size-small;
+		}
+	}
+}
+
+.current-cards .finished-cards {
+	position: relative;
+	left: 50%;
+	transform: translateX(-50%);
+}
+
+.current-cards {
+	margin-top: $base-size-large;
+}
+
+.finished-cards {
+	margin-bottom: $base-size-large;
 }
