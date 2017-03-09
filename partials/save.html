@@ -1,11 +1,11 @@
 <div class="container">
 	<div class="name-set">
-		<input type="text" class="underline" id="set-name" value="Ex. Data structures and algorithms">
+		<input type="text" class="underline" id="set-name" value="Ex. Data structures and algorithms" ng-model="cardSetName">
 		<label for="set-name">Card Set Name</label>
 	</div>
 
 	<div class="action-btns">
-		<a href="#" class="btn -large">Save</a>
+		<button class="btn -large" ng-click="exportCards()">Save</button>
 		<a href="#/study" class="btn -large">Study</a>
 	</div>
 
