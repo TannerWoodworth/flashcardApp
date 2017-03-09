@@ -1,6 +1,6 @@
 # flashcardApp
 
-A barebones flashcard application created with AngularJS
+A barebones flashcard app built with AngularJS
 
 **NOTE: This project is in its very early stages and SHOULD NOT be expected to function properly.**
 
