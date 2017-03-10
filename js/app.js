@@ -97,28 +97,42 @@ flashcardApp.controller('saveController', ['$scope', 'cards', function($scope, c
 flashcardApp.controller('studyController', ['$scope', 'cards', function($scope, cards) {
 
 	$scope.savedCards = cards;
-	$scope.cardStackSize = $scope.savedCards.length;
+	$scope.cardStackSize = $scope.savedCards.length - 1;
 	$scope.currentCardText = $scope.savedCards[0].front;
 	$scope.currentCardside = 0;
 	$scope.currentCardId = $scope.savedCards[0].id;
 
-	console.log('Card Stack Size: ' + $scope.cardStackSize);
-	console.log('Current Card Id: ' + $scope.currentCardId);
+	// console.log('Card Stack Size: ' + $scope.cardStackSize);
+	// console.log('Current Card Id: ' + $scope.currentCardId);
 
 	$scope.nextCard = function() {
-		console.log('NEXT CARD');
-		$scope.currentCardside = 0;
 
+		if ($scope.currentCardId < $scope.cardStackSize) {
+			$scope.currentCardId = $scope.currentCardId + 1;
+			$scope.currentCardText = $scope.savedCards[$scope.currentCardId].front;
+		} else {
+			$scope.currentCardId = 0;
+			$scope.currentCardText = $scope.savedCards[0].front;
+		}
+
+		$scope.currentCardside = 0;
 	}
 
 	$scope.previousCard = function() {
-		console.log('PREV CARD');
-		$scope.currentCardside = 0;
 
-		
+		if ($scope.currentCardId === 0) {
+			$scope.currentCardId = $scope.cardStackSize;
+			$scope.currentCardText = $scope.savedCards[$scope.currentCardId].front;
+		} else {
+			$scope.currentCardId = $scope.currentCardId - 1;
+			$scope.currentCardText = $scope.savedCards[$scope.currentCardId].front;
+		}
+
+		$scope.currentCardside = 0;
 	}
 
 	$scope.flipCard = function() {
+
 		if ($scope.currentCardside === 0) {
 			// Back
 			$scope.currentCardside = 1
