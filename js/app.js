@@ -59,15 +59,18 @@ $scope.currentFront = 'Card Front Text';
 $scope.currentBack = 'Card Back Text';
 $scope.savedCards = cards;
 
-	$scope.addNewCard = function(savedCards) {
+	$scope.addNewCard = function() {
 
-		$scope.cardId = $scope.savedCards.length + 1;
+		$scope.cardId = $scope.savedCards.length;
 		$scope.newCard = {front: $scope.currentFront, back: $scope.currentBack, id: $scope.cardId};
 
 		$scope.savedCards.push($scope.newCard);
+
+		$scope.currentFront = 'Card Front Text';
+		$scope.currentBack = 'Card Back Text';
 	}
 
-	$scope.removeCard = function(savedCards) {
+	$scope.removeCard = function() {
 		console.log('REMOVE CARD');
 	}
 
@@ -94,17 +97,37 @@ flashcardApp.controller('saveController', ['$scope', 'cards', function($scope, c
 flashcardApp.controller('studyController', ['$scope', 'cards', function($scope, cards) {
 
 	$scope.savedCards = cards;
+	$scope.cardStackSize = $scope.savedCards.length;
+	$scope.currentCardText = $scope.savedCards[0].front;
+	$scope.currentCardside = 0;
+	$scope.currentCardId = $scope.savedCards[0].id;
 
-	$scope.nextCard = function(savedCards) {
+	console.log('Card Stack Size: ' + $scope.cardStackSize);
+	console.log('Current Card Id: ' + $scope.currentCardId);
+
+	$scope.nextCard = function() {
 		console.log('NEXT CARD');
+		$scope.currentCardside = 0;
+
 	}
 
-	$scope.previousCard = function(savedCards) {
-		console.log('PREVIOUS CARD');
+	$scope.previousCard = function() {
+		console.log('PREV CARD');
+		$scope.currentCardside = 0;
+
+		
 	}
 
-	$scope.flipCard = function(savedCards) {
-		console.log('FLIP CARD');
+	$scope.flipCard = function() {
+		if ($scope.currentCardside === 0) {
+			// Back
+			$scope.currentCardside = 1
+			$scope.currentCardText = $scope.savedCards[$scope.currentCardId].back;
+		} else {
+			// Front
+			$scope.currentCardside = 0
+			$scope.currentCardText = $scope.savedCards[$scope.currentCardId].front;
+		}
 	}
 
 }]); 
