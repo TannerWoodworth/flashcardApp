@@ -35,27 +35,7 @@ $routeProvider
 
 flashcardApp.factory('cards', function() {
    
-   var savedCards = [
-		{
-			front: 'Card Front 1 from factory',
-			back: 'Card Back 1',
-			id: 1
-		},
-		{
-			front: 'Card Front 2',
-			back: 'Card Back 2',
-			id: 2
-		},
-		{
-			front: 'Card Front 3',
-			back: 'Card Back 3',
-			id: 3
-		},
-		{
-			front: 'Card Front 4',
-			back: 'Card Back 4',
-			id: 4
-		}];
+   var savedCards = [];
 
 		return savedCards;
   
@@ -80,8 +60,11 @@ $scope.currentBack = 'Card Back Text';
 $scope.savedCards = cards;
 
 	$scope.addNewCard = function(savedCards) {
-		console.log('Front: ' + $scope.currentFront);
-		console.log('Back: ' + $scope.currentBack);
+
+		$scope.cardId = $scope.savedCards.length + 1;
+		$scope.newCard = {front: $scope.currentFront, back: $scope.currentBack, id: $scope.cardId};
+
+		$scope.savedCards.push($scope.newCard);
 	}
 
 	$scope.removeCard = function(savedCards) {

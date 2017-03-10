@@ -9,6 +9,7 @@
 }
 
 // BUTTONS
+
 .action-btns {
 	margin: $base-size auto;
 	text-align: center;
@@ -23,6 +24,7 @@
 }
 
 // UNIQUE / SPECIFIC
+
 .splash-content{
 	position: absolute;
 	top: 30%;
@@ -30,6 +32,7 @@
 	transform: translateX(-50%) translateY(-50%);
 }
 
+// CARDS 
 
 .card-well {
 	display: inline-block;
@@ -62,4 +65,9 @@
 
 .finished-cards {
 	margin-bottom: $base-size-large;
+}
+
+.card-controls {
+	display: none;
+	// TODO: Write hover styles
 }
