@@ -30,14 +30,14 @@ $routeProvider
 
 });
 
-// SERVICES
+// FACTORIES
 /////////////////////////////////////////////////
 
-flashcardApp.service('cardService', function() {
+flashcardApp.factory('cards', function() {
    
-   this.savedCards = [
+   var savedCards = [
 		{
-			front: 'Card Front 1',
+			front: 'Card Front 1 from factory',
 			back: 'Card Back 1',
 			id: 1
 		},
@@ -56,13 +56,15 @@ flashcardApp.service('cardService', function() {
 			back: 'Card Back 4',
 			id: 4
 		}];
+
+		return savedCards;
   
 });
 
 // CONTROLLERS
 /////////////////////////////////////////////////
 
-flashcardApp.controller('splashController', ['$scope', 'cardService', function($scope, cardService) {
+flashcardApp.controller('splashController', ['$scope', 'cards', function($scope, cards) {
 
 // IMPORTING JSON OBJECT
 	$scope.importCards = function() {
@@ -71,43 +73,27 @@ flashcardApp.controller('splashController', ['$scope', 'cardService', function($
 
 }]);
 
-flashcardApp.controller('createController', ['$scope', 'cardService', function($scope, cardService) {
+flashcardApp.controller('createController', ['$scope', 'cards', function($scope, cards) {
 
 $scope.currentFront = 'Card Front Text';
 $scope.currentBack = 'Card Back Text';
-
-$scope.savedCards = [
-		{
-			front: 'Card Front 1',
-			back: 'Card Back 1',
-			id: 1
-		},
-		{
-			front: 'Card Front 2',
-			back: 'Card Back 2',
-			id: 2
-		},
-		{
-			front: 'Card Front 3',
-			back: 'Card Back 3',
-			id: 3
-		},
-		{
-			front: 'Card Front 4',
-			back: 'Card Back 4',
-			id: 4
-		}];
+$scope.savedCards = cards;
 
 	$scope.addNewCard = function(savedCards) {
 		console.log('Front: ' + $scope.currentFront);
 		console.log('Back: ' + $scope.currentBack);
 	}
 
+	$scope.removeCard = function(savedCards) {
+		console.log('REMOVE CARD');
+	}
+
 }]);
 
-flashcardApp.controller('saveController', ['$scope', 'cardService', function($scope, cardService) {
+flashcardApp.controller('saveController', ['$scope', 'cards', function($scope, cards) {
 
 	$scope.cardSetName = 'Ex. Data structures and algorithms';
+	$scope.savedCards = cards;
 
 // PARSING JSON OBJECT
 
@@ -122,7 +108,21 @@ flashcardApp.controller('saveController', ['$scope', 'cardService', function($sc
 
 }]);
 
-flashcardApp.controller('studyController', ['$scope', 'cardService', function($scope, cardService) {
+flashcardApp.controller('studyController', ['$scope', 'cards', function($scope, cards) {
+
+	$scope.savedCards = cards;
+
+	$scope.nextCard = function(savedCards) {
+		console.log('NEXT CARD');
+	}
+
+	$scope.previousCard = function(savedCards) {
+		console.log('PREVIOUS CARD');
+	}
+
+	$scope.flipCard = function(savedCards) {
+		console.log('FLIP CARD');
+	}
 
 }]); 
 
