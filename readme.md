@@ -1,15 +1,18 @@
 # flashcardApp
 
-A barebones flashcard app built with AngularJS
+A barebones flashcard app built with AngularJS. 
 
 **NOTE: This project is in its very early stages and SHOULD NOT be expected to function properly.**
 
 TODO:
+
 - Make Responsive
-- Fix some spacing / proportion issues
-- Add basically all functionality
-- Limit input to 350 chars on each card side
-- Add ability to import / export cards using a JSON object
+- Fix a ton of spacing / proportion issues
+- Add ability to import object array 
+- Add validation for imported object array
+- Limit input to 350 chars on each card side ???
+- Set up session storage for cards
+- Normalize all classes and IDs
 
 
 ## Installation instructions
@@ -24,3 +27,4 @@ After cloning the project, run the following commands:
     gulp
     gulp dev
    
+npm may need sudo

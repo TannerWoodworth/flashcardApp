@@ -2,6 +2,11 @@
 	<strong class="splash-title">Flashcards</strong>
 	<div class="action-btns">
 		<a href="#/create" class="btn -large">New Set</a>
-		<button class="btn -large" ng-click="importCards()">Import</button>
+		<button class="btn -large" ng-click="displayImport()">Load</button>
+	</div>
+
+	<div id="import-area" class="import-area">
+		<textarea class="import-field" ng-model="importFieldContent" placeholder="Paste object here"></textarea>
+		<a href="#/create" class="btn -large center -h" ng-click="importCards()">Import</a>
 	</div>
 </div>

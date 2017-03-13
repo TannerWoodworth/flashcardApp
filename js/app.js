@@ -45,19 +45,27 @@ flashcardApp.factory('cards', function() {
 /////////////////////////////////////////////////
 
 flashcardApp.controller('splashController', ['$scope', 'cards', function($scope, cards) {
+	$scope.savedCards = cards;
+	$scope.importFieldId = document.getElementById('import-area');
+	$scope.importFieldContent = '';
 
 // IMPORTING JSON OBJECT
+
+	$scope.displayImport = function() {
+		$scope.importFieldId.style.display = 'block';
+	}
+
 	$scope.importCards = function() {
-		console.log('Import!');
+		console.log($scope.importFieldContent);
 	}
 
 }]);
 
 flashcardApp.controller('createController', ['$scope', 'cards', function($scope, cards) {
 
-$scope.currentFront = 'Card Front Text';
-$scope.currentBack = 'Card Back Text';
-$scope.savedCards = cards;
+	$scope.currentFront = '';
+	$scope.currentBack = '';
+	$scope.savedCards = cards;
 
 	$scope.addNewCard = function() {
 
@@ -66,8 +74,8 @@ $scope.savedCards = cards;
 
 		$scope.savedCards.push($scope.newCard);
 
-		$scope.currentFront = 'Card Front Text';
-		$scope.currentBack = 'Card Back Text';
+		$scope.currentFront = '';
+		$scope.currentBack = '';
 	}
 
 	$scope.removeCard = function() {
@@ -81,15 +89,20 @@ flashcardApp.controller('saveController', ['$scope', 'cards', function($scope, c
 	$scope.cardSetName = 'Ex. Data structures and algorithms';
 	$scope.savedCards = cards;
 
-// PARSING JSON OBJECT
-
-
-
 // EXPORTING JSON OBJECT
 
 	$scope.exportCards = function() {
-		console.log('Export!');
-		console.log($scope.cardSetName);
+		$scope.exportedObject = JSON.stringify($scope.savedCards);
+		$scope.fileName = $scope.cardSetName + '.json';
+
+		$scope.psudoBtn = document.createElement('a');
+	  $scope.psudoBtn.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent($scope.exportedObject));
+	  $scope.psudoBtn.setAttribute('download', $scope.fileName);
+
+	  $scope.psudoBtn.style.display = 'none';
+  	document.body.appendChild($scope.psudoBtn);
+  	$scope.psudoBtn.click();
+  	document.body.removeChild($scope.psudoBtn);
 	}
 
 }]);
