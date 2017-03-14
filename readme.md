@@ -20,7 +20,7 @@ TODO:
 
 First, be sure that Node is installed on your computer.
 	
-		node -v
+    node -v
 
 Make sure Gulp is globally installed, by running:
 
