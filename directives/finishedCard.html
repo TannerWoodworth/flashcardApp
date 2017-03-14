@@ -2,10 +2,10 @@
 	<div class="card-controls">
 		<div class="card-btns">
 			<button class="btn" ng-click="addNewCard()">Edit</button>
-			<button class="btn -red" ng-click="addNewCard()">Delete</button>
+			<button class="btn -red" ng-click="removeCard()">Delete</button>
 		</div>
 	</div>
-
+	{{ cardObject.id }}
 	<div class="card">
 		<p class="card-content"> {{ cardObject.front }} </p>
 	</div>

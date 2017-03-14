@@ -41,6 +41,9 @@
 	transform: translateX(-50%);
 	margin-top: $base-size-small;
 	margin-bottom: $base-size-small;
+	&:hover {
+		.card-controls {display: block;}
+	}
 
 	.card {
 		&:first-child {
@@ -69,5 +72,27 @@
 
 .card-controls {
 	display: none;
-	// TODO: Write hover styles
+	position: absolute;
+	height: 99%;
+	width: 100%;
+	background: rgba($color-darker-green, 0.5);
+	z-index: 1;
+}
+
+.card-btns {
+	display: inline-block;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translateX(-50%) translateY(-50%);
+	z-index: 2;
+
+	.btn {
+		margin-right: 24px;
+		min-width: 126px;
+
+		&:last-child {
+			margin-right: 0px;
+		}
+	}
 }

@@ -8,16 +8,21 @@ TODO:
 
 - Make Responsive
 - Fix a ton of spacing / proportion issues
+- Refactor styles
 - Add ability to import object array 
 - Add validation for imported object array
-- Limit input to 350 chars on each card side ???
+- Add ability to edit / delete cards
 - Set up session storage for cards
 - Normalize all classes and IDs
-
+- Limit input to 350 chars on each card side ???
 
 ## Installation instructions
 
-First make sure Gulp is globally installed, by running:
+First, be sure that Node is installed on your computer.
+	
+		node -v
+
+Make sure Gulp is globally installed, by running:
 
     npm install -g gulp
 
