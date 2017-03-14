@@ -1,14 +1,15 @@
-<div class="card-well">
+<div class="card-well" current-card-id="{{ cardObject.id }}">
 	<div class="card-controls">
 		<div class="card-btns">
-			<button class="btn" ng-click="addNewCard()">Edit</button>
-			<button class="btn -red" ng-click="removeCard()">Delete</button>
+			<button class="btn" ng-click="editCard(this)">Edit</button>
+			<button class="btn -red" ng-click="removeCard(this)">Delete</button>
 		</div>
 	</div>
+
 	<div class="card">
 		<p class="card-content"> {{ cardObject.front }} </p>
 	</div>
 	<div class="card">
 		<p class="card-content"> {{ cardObject.back }} </p>
 	</div>
-</div>
+</div> 

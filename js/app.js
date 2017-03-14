@@ -49,8 +49,6 @@ flashcardApp.controller('splashController', ['$scope', 'cards', function($scope,
 	$scope.importFieldId = document.getElementById('import-area');
 	$scope.importFieldContent = '';
 
-// IMPORTING JSON OBJECT
-
 	$scope.displayImport = function() {
 		$scope.importFieldId.style.display = 'block';
 	}
@@ -78,9 +76,15 @@ flashcardApp.controller('createController', ['$scope', 'cards', function($scope,
 		$scope.currentBack = '';
 	}
 
-	$scope.removeCard = function() {
+	$scope.removeCard = function(el) {
 		console.log('REMOVE CARD');
 	}
+
+	$scope.editCard = function(el) {
+		console.log('EDIT');
+
+	}
+
 
 }]);
 
@@ -168,6 +172,11 @@ flashcardApp.directive("finishedCard", function() {
 		replace: false,
 		scope: {
 			cardObject: "="
-		}
+		},
+		link: function (scope, element, attributes) {
+      attributes.$observe('currentCardId', function(newValue) {
+        scope.currentCardId = newValue
+      })
+    }
 	}
 });

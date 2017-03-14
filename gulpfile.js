@@ -155,6 +155,14 @@ gulp.task('move-directives', [], function() {
     .pipe(gulp.dest('dist/directives/'));
 });
 
+// move favicons
+
+gulp.task('move-directives', [], function() {
+  console.log("Moving favicons");
+    return gulp.src("favicons/*")
+    .pipe(gulp.dest('dist/'));
+});
+
 // installs and builds everything, including sprites
 
 gulp.task('default', ['sprite','build', 'test', 'move-partials', 'move-directives']);
