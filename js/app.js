@@ -63,28 +63,32 @@ flashcardApp.controller('createController', ['$scope', 'cards', function($scope,
 
 	$scope.currentFront = '';
 	$scope.currentBack = '';
+	$scope.editingCardId = '';
 	$scope.savedCards = cards;
 
 	$scope.addNewCard = function() {
 
-		$scope.cardId = $scope.savedCards.length;
-		$scope.newCard = {front: $scope.currentFront, back: $scope.currentBack, id: $scope.cardId};
+		if ($scope.editingCardId == '') {
+			// TODO:  rewrite to base new id based on last object's id
+			$scope.cardId = $scope.savedCards.length;
+			$scope.newCard = {front: $scope.currentFront, back: $scope.currentBack, id: $scope.cardId};
+			$scope.savedCards.push($scope.newCard);
+		} else {
+			// TODO: write replace card stuff
 
-		$scope.savedCards.push($scope.newCard);
+			$scope.editingCardId = '';
+		}
 
 		$scope.currentFront = '';
 		$scope.currentBack = '';
-	}
+	};
 
-	$scope.removeCard = function(el) {
-		console.log('REMOVE CARD');
-	}
-
-	$scope.editCard = function(el) {
-		console.log('EDIT');
-
-	}
-
+	$scope.editThisCardFn = function(thisId, thisFront, thisBack) {
+		$scope.editingCardId = thisId;
+		console.log('id: ' + thisId + ' front: ' + thisFront + ' front: ' + thisBack);
+		$scope.currentFront = thisFront;
+		$scope.currentBack = thisBack;
+	};
 
 }]);
 
@@ -119,8 +123,7 @@ flashcardApp.controller('studyController', ['$scope', 'cards', function($scope, 
 	$scope.currentCardside = 0;
 	$scope.currentCardId = $scope.savedCards[0].id;
 
-	// console.log('Card Stack Size: ' + $scope.cardStackSize);
-	// console.log('Current Card Id: ' + $scope.currentCardId);
+  // TODO: rewrite so we loop through the array rather than increment / decrement based on card id
 
 	$scope.nextCard = function() {
 
@@ -174,9 +177,22 @@ flashcardApp.directive("finishedCard", function() {
 			cardObject: "="
 		},
 		link: function (scope, element, attributes) {
-      attributes.$observe('currentCardId', function(newValue) {
-        scope.currentCardId = newValue
-      })
+
+		  scope.removeCard = function(el) {
+		  	scope.thisCard = el.cardObject.id;
+				console.log('REMOVED CARD: ' + scope.thisCard);
+			}
+
+			scope.editCard = function(el) {
+				scope.thisCard = el.cardObject.id;
+				console.log('EDITING CARD: ' + scope.thisCard);
+				scope.currentFront = el.cardObject.front;
+				scope.currentBack = el.cardObject.back;
+				console.log('Front: ' + el.cardObject.front);
+				// TODO: write something to pass this info to the create controller and call editThisCardFn function
+
+				// scope.editThisCardFn(el.cardObject.id, el.cardObject.front, el.cardObject.back);
+			}
     }
 	}
 });
