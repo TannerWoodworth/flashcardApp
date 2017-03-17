@@ -68,16 +68,17 @@ flashcardApp.controller('createController', ['$scope', 'cards', function($scope,
 
 	$scope.addNewCard = function() {
 
-		if ($scope.editingCardId == '') {
-			// TODO:  rewrite to base new id based on last object's id
-			$scope.cardId = $scope.savedCards.length;
-			$scope.newCard = {front: $scope.currentFront, back: $scope.currentBack, id: $scope.cardId};
-			$scope.savedCards.push($scope.newCard);
+		if ($scope.savedCards.length > 0) {
+			// exists
+			$scope.cardId = $scope.savedCards.slice(-1)[0].id + 1
+			console.info('cardId SET TO: ' + $scope.cardId);
 		} else {
-			// TODO: write replace card stuff
-
-			$scope.editingCardId = '';
+			console.info('cardId SET TO 0');
+			$scope.cardId = 0;
 		}
+
+		$scope.newCard = {front: $scope.currentFront, back: $scope.currentBack, id: $scope.cardId};
+		$scope.savedCards.push($scope.newCard);
 
 		$scope.currentFront = '';
 		$scope.currentBack = '';
@@ -122,15 +123,19 @@ flashcardApp.controller('studyController', ['$scope', 'cards', function($scope, 
 	$scope.currentCardText = $scope.savedCards[0].front;
 	$scope.currentCardside = 0;
 	$scope.currentCardId = $scope.savedCards[0].id;
+	$scope.lastCardId = $scope.savedCards.slice(-1)[0].id;
 
   // TODO: rewrite so we loop through the array rather than increment / decrement based on card id
 
+  console.log('last cardId in stack: ' + $scope.lastCardId);
+
 	$scope.nextCard = function() {
 
-		if ($scope.currentCardId < $scope.cardStackSize) {
+		if ($scope.currentCardId < $scope.lastCardId) {
 			$scope.currentCardId = $scope.currentCardId + 1;
 			$scope.currentCardText = $scope.savedCards[$scope.currentCardId].front;
 		} else {
+			// Go to first card
 			$scope.currentCardId = 0;
 			$scope.currentCardText = $scope.savedCards[0].front;
 		}
