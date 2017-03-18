@@ -174,7 +174,7 @@ flashcardApp.controller('studyController', ['$scope', 'cards', function($scope, 
 // DIRECTIVES
 /////////////////////////////////////////////////
 
-flashcardApp.directive("finishedCard", function() {
+flashcardApp.directive("finishedCard", ['cards', function(cards) {
 	return {
 		templateUrl: 'directives/finishedCard.html',
 		replace: false,
@@ -185,7 +185,7 @@ flashcardApp.directive("finishedCard", function() {
 
 		  scope.removeCard = function(el) {
 		  	scope.thisCard = el.cardObject.id;
-				console.log('REMOVED CARD: ' + scope.thisCard);
+				cards.splice(scope.thisCard, 1);
 			}
 
 			scope.editCard = function(el) {
@@ -200,4 +200,4 @@ flashcardApp.directive("finishedCard", function() {
 			}
     }
 	}
-});
+}]);
