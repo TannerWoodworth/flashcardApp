@@ -122,21 +122,16 @@ flashcardApp.controller('studyController', ['$scope', 'cards', function($scope, 
 	$scope.cardStackSize = $scope.savedCards.length - 1;
 	$scope.currentCardText = $scope.savedCards[0].front;
 	$scope.currentCardside = 0;
-	$scope.currentCardId = $scope.savedCards[0].id;
-	$scope.lastCardId = $scope.savedCards.slice(-1)[0].id;
-
-  // TODO: rewrite so we loop through the array rather than increment / decrement based on card id
-
-  console.log('last cardId in stack: ' + $scope.lastCardId);
+	$scope.currentCard = 0;
 
 	$scope.nextCard = function() {
 
-		if ($scope.currentCardId < $scope.lastCardId) {
-			$scope.currentCardId = $scope.currentCardId + 1;
-			$scope.currentCardText = $scope.savedCards[$scope.currentCardId].front;
+		if ($scope.currentCard < $scope.cardStackSize) {
+			$scope.currentCard = $scope.currentCard + 1;
+			$scope.currentCardText = $scope.savedCards[$scope.currentCard].front;
 		} else {
 			// Go to first card
-			$scope.currentCardId = 0;
+			$scope.currentCard = 0;
 			$scope.currentCardText = $scope.savedCards[0].front;
 		}
 
@@ -145,12 +140,12 @@ flashcardApp.controller('studyController', ['$scope', 'cards', function($scope, 
 
 	$scope.previousCard = function() {
 
-		if ($scope.currentCardId === 0) {
-			$scope.currentCardId = $scope.cardStackSize;
-			$scope.currentCardText = $scope.savedCards[$scope.currentCardId].front;
+		if ($scope.currentCard === 0) {
+			$scope.currentCard = $scope.cardStackSize;
+			$scope.currentCardText = $scope.savedCards[$scope.currentCard].front;
 		} else {
-			$scope.currentCardId = $scope.currentCardId - 1;
-			$scope.currentCardText = $scope.savedCards[$scope.currentCardId].front;
+			$scope.currentCard = $scope.currentCard - 1;
+			$scope.currentCardText = $scope.savedCards[$scope.currentCard].front;
 		}
 
 		$scope.currentCardside = 0;
@@ -161,11 +156,11 @@ flashcardApp.controller('studyController', ['$scope', 'cards', function($scope, 
 		if ($scope.currentCardside === 0) {
 			// Back
 			$scope.currentCardside = 1
-			$scope.currentCardText = $scope.savedCards[$scope.currentCardId].back;
+			$scope.currentCardText = $scope.savedCards[$scope.currentCard].back;
 		} else {
 			// Front
 			$scope.currentCardside = 0
-			$scope.currentCardText = $scope.savedCards[$scope.currentCardId].front;
+			$scope.currentCardText = $scope.savedCards[$scope.currentCard].front;
 		}
 	}
 
