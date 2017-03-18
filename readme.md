@@ -11,10 +11,9 @@ TODO:
 - Refactor styles
 - Add ability to import object array 
 - Add validation for imported object array
-- Add ability to edit / delete cards
+- Add ability to edit cards
 - Set up session storage for cards
 - Normalize all classes and IDs
-- Limit input to 350 chars on each card side ???
 
 ## Installation instructions
 

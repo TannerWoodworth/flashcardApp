@@ -2,7 +2,14 @@
 	<strong class="splash-title">Flashcards</strong>
 	<div class="action-btns">
 		<a href="#/create" class="btn -large">New Set</a>
-		<button class="btn -large" ng-click="displayImport()">Load</button>
+		<!-- <button class="btn -large" ng-click="displayImport()">Load</button> -->
+
+		<!-- <input type="file"  class="" ng-click="displayImport()" value="Load"> -->
+		<div class="fileUpload btn -large">
+    	Upload
+    	<input type="file" id="import" class="upload" onchange="fileChanged()">
+		</div>
+
 	</div>
 
 	<div id="import-area" class="import-area">

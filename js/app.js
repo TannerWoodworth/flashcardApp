@@ -46,15 +46,52 @@ flashcardApp.factory('cards', function() {
 
 flashcardApp.controller('splashController', ['$scope', 'cards', function($scope, cards) {
 	$scope.savedCards = cards;
-	$scope.importFieldId = document.getElementById('import-area');
-	$scope.importFieldContent = '';
+	$scope.fileInput = document.getElementById('import');
 
-	$scope.displayImport = function() {
-		$scope.importFieldId.style.display = 'block';
+	$scope.importFieldId = document.getElementById('import-area');
+	$scope.importFieldContent;
+
+	// TODO: Fix this garbage fire
+
+	$scope.fileChanged = function(e) {
+		$scope.file = $scope.fileInput.files;
+ 		console.log($scope.file);
+ 		$scope.fileReader = new FileReader();
+
+ 		$scope.fileReader.onload = function(e) {
+ 			console.log('FILEREADER');
+ 			console.log(e);
+ 		}
 	}
 
-	$scope.importCards = function() {
-		console.log($scope.importFieldContent);
+	$scope.displayImport = function() {
+		// $scope.importFieldId.style.display = 'block';
+		console.info('displayImport CALLED');
+
+		$scope.fileInput.onchange = function (e) {
+			$scope.file = $scope.fileInput.files;
+   		console.log($scope.file);
+   		$scope.fileReader = new FileReader();
+
+   		$scope.fileReader.onload = function(e) {
+   			console.log('FILEREADER');
+   			console.log(e);
+   		}
+
+   		// $scope.result = JSON.parse(e.target.result);
+   		// $scope.string = JSON.stringify($scope.result, null, 2);
+   		// console.log($scope.string);
+		};
+	}
+
+	$scope.importCards = function(e) {
+
+		if ($scope.file.length <= 0) {
+	    return false;
+	  }
+
+		$scope.importableItems = $scope.importFieldContent.length;
+		console.log('IMPORTED: ' + $scope.importFieldContent + ' # OF ITEMS: '+ $scope.importableItems);
 	}
 
 }]);
@@ -67,7 +104,7 @@ flashcardApp.controller('createController', ['$scope', 'cards', function($scope,
 	$scope.savedCards = cards;
 
 	$scope.addNewCard = function() {
-
+		console.log($scope.savedCards);
 		if ($scope.savedCards.length > 0) {
 			// exists
 			$scope.cardId = $scope.savedCards.slice(-1)[0].id + 1
