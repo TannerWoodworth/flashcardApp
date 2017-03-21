@@ -55,13 +55,13 @@ flashcardApp.controller('splashController', ['$scope', 'cards', function($scope,
 
 	$scope.fileChanged = function(e) {
 		$scope.file = $scope.fileInput.files;
- 		console.log($scope.file);
- 		$scope.fileReader = new FileReader();
+		console.log($scope.file);
+		$scope.fileReader = new FileReader();
 
- 		$scope.fileReader.onload = function(e) {
- 			console.log('FILEREADER');
- 			console.log(e);
- 		}
+		$scope.fileReader.onload = function(e) {
+			console.log('FILEREADER');
+			console.log(e);
+		}
 	}
 
 	$scope.displayImport = function() {
@@ -104,13 +104,10 @@ flashcardApp.controller('createController', ['$scope', 'cards', function($scope,
 	$scope.savedCards = cards;
 
 	$scope.addNewCard = function() {
-		console.log($scope.savedCards);
 		if ($scope.savedCards.length > 0) {
 			// exists
 			$scope.cardId = $scope.savedCards.slice(-1)[0].id + 1
-			console.info('cardId SET TO: ' + $scope.cardId);
 		} else {
-			console.info('cardId SET TO 0');
 			$scope.cardId = 0;
 		}
 
@@ -121,11 +118,8 @@ flashcardApp.controller('createController', ['$scope', 'cards', function($scope,
 		$scope.currentBack = '';
 	};
 
-	$scope.editThisCardFn = function(thisId, thisFront, thisBack) {
-		$scope.editingCardId = thisId;
-		console.log('id: ' + thisId + ' front: ' + thisFront + ' front: ' + thisBack);
-		$scope.currentFront = thisFront;
-		$scope.currentBack = thisBack;
+	$scope.editCardFn = function() {
+		alert('CONTROLLER EDIT FUNCTION CALLED');
 	};
 
 }]);
@@ -210,26 +204,23 @@ flashcardApp.directive("finishedCard", ['cards', function(cards) {
 	return {
 		templateUrl: 'directives/finishedCard.html',
 		replace: false,
+		controller: 'splashController',
 		scope: {
-			cardObject: "="
+			cardObject: "=",
+			editCardFn: "&"
 		},
 		link: function (scope, element, attributes) {
+
+			scope.editCard = function() {
+        console.log('DIRECTIVE FN CALLED')
+        scope.editCardFn();
+      };
 
 		  scope.removeCard = function(el) {
 		  	scope.thisCard = el.cardObject.id;
 				cards.splice(scope.thisCard, 1);
-			}
+			};
 
-			scope.editCard = function(el) {
-				scope.thisCard = el.cardObject.id;
-				console.log('EDITING CARD: ' + scope.thisCard);
-				scope.currentFront = el.cardObject.front;
-				scope.currentBack = el.cardObject.back;
-				console.log('Front: ' + el.cardObject.front);
-				// TODO: write something to pass this info to the create controller and call editThisCardFn function
-
-				// scope.editThisCardFn(el.cardObject.id, el.cardObject.front, el.cardObject.back);
-			}
     }
 	}
 }]);
