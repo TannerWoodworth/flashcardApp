@@ -102,24 +102,39 @@ flashcardApp.controller('createController', ['$scope', 'cards', function($scope,
 	$scope.currentBack = '';
 	$scope.editingCardId = '';
 	$scope.savedCards = cards;
+	$scope.editingCard = false;
+	$scope.editingCardId;
 
 	$scope.addNewCard = function() {
-		if ($scope.savedCards.length > 0) {
-			// exists
-			$scope.cardId = $scope.savedCards.slice(-1)[0].id + 1
+
+		// TODO: Clean up this garbage fire and try harder to break it
+
+		if ($scope.editingCard === false){
+			if ($scope.savedCards.length > 0) {
+				$scope.cardId = $scope.savedCards.slice(-1)[0].id + 1
+			} else {
+				$scope.cardId = 0;
+			}
+
+			$scope.newCard = {front: $scope.currentFront, back: $scope.currentBack, id: $scope.cardId};
+
 		} else {
-			$scope.cardId = 0;
+			$scope.editingCard = false;
+			cards.splice($scope.editingCardId, 1);
+			$scope.newCard = {front: $scope.currentFront, back: $scope.currentBack, id: $scope.editingCardId};
+			$scope.editingCardId = '';
 		}
 
-		$scope.newCard = {front: $scope.currentFront, back: $scope.currentBack, id: $scope.cardId};
 		$scope.savedCards.push($scope.newCard);
-
 		$scope.currentFront = '';
 		$scope.currentBack = '';
 	};
 
-	$scope.editCardFn = function() {
-		alert('CONTROLLER EDIT FUNCTION CALLED');
+	$scope.editCardFn = function(thisCardId) {
+		$scope.editingCard = true;
+		$scope.editingCardId = thisCardId;
+		$scope.currentFront = $scope.savedCards[thisCardId].front;
+		$scope.currentBack = $scope.savedCards[thisCardId].back;
 	};
 
 }]);
@@ -211,14 +226,13 @@ flashcardApp.directive("finishedCard", ['cards', function(cards) {
 		},
 		link: function (scope, element, attributes) {
 
-			scope.editCard = function() {
-        console.log('DIRECTIVE FN CALLED')
-        scope.editCardFn();
+			scope.editCard = function(el) {
+				scope.thisCard = el.cardObject.id;
+        scope.editCardFn({thisCardId: scope.thisCard});
       };
 
 		  scope.removeCard = function(el) {
-		  	scope.thisCard = el.cardObject.id;
-				cards.splice(scope.thisCard, 1);
+				cards.splice(el, 1);
 			};
 
     }
