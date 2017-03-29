@@ -1,7 +1,7 @@
 <div class="card-well">
 	<div class="card-controls">
 		<div class="card-btns">
-			<button class="btn" ng-click="editCard({{ cardObject.id }})">Edit</button>
+			<button class="btn" current-card-id="{{ cardObject.id }}" ng-click="editCard(this)">Edit</button>
 			<button class="btn -red" ng-click="removeCard(this)">Delete</button>
 		</div>
 	</div>

@@ -9,10 +9,7 @@ TODO:
 - Make Responsive
 - Fix a ton of spacing / proportion issues
 - Refactor styles
-- Add ability to import object array 
-- Add validation for imported object array
-- Add ability to edit cards
-- Set up session storage for cards
+- Add ability to import object array
 - Normalize all classes and IDs
 
 ## Installation instructions

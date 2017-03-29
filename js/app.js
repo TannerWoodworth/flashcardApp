@@ -58,10 +58,10 @@ flashcardApp.controller('splashController', ['$scope', 'cards', function($scope,
 		console.log($scope.file);
 		$scope.fileReader = new FileReader();
 
-		$scope.fileReader.onload = function(e) {
-			console.log('FILEREADER');
-			console.log(e);
-		}
+		// $scope.fileReader.onload = function(e) {
+		// 	console.log('FILEREADER');
+		// 	console.log(e);
+		// }
 	}
 
 	$scope.displayImport = function() {
